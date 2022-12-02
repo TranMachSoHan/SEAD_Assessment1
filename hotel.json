@@ -43,14 +43,16 @@
       "name": "single",
       "size": "45",
       "rate": "100",
-      "numberOfRooms": "2 single rooms"
+      "singleRoom": 2,
+      "doubleRoom": 0
     },
     {
       "uuid": "0e6b7514-464f-482e-a746-db25fceeccad",
       "name": "double",
       "size": "100",
       "rate": "200",
-      "numberOfRooms": "1 double rooms"
+      "singleRoom":0,
+      "doubleRoom": 1
     }
   ],
   "houseRules": [
