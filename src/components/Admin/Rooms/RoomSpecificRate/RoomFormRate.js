@@ -6,39 +6,13 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css";
-import MyDatePicker from "../../Helper/MyDatePicker";
+import MyDatePicker from "../../../Helper/MyDatePicker";
 
 const RoomFormRate = (props) => {
-    const [room, setRoom] = useState({});
     const [loading, setLoading] = useState(true);
     const [hotel,setHotel] = useState({});
+    const [room, setRoom] = useState({});
     const {roomID} = useParams();
-
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        const fetchData = async () => {
-
-        try {
-            console.log(Number(roomID));
-            axios.get(`https://api.npoint.io/57c91b6f051e9f983cd7`).then(
-                response => {
-                    setHotel(response.data);
-                    if(roomID !== -1){
-                        setRoom(response.data.roomType[roomID]);
-                    }
-                    setLoading(false);
-                }
-            )
-        } catch (error) {
-            console.error(error)
-        }
-        };
-    
-        fetchData();
-
-    }, []);
-      
 
     return (
         <div>
@@ -52,7 +26,8 @@ const RoomFormRate = (props) => {
                         <Formik
                             initialValues={{ 
                                 dateFrom: new Date() , 
-                                dateTo: new Date()
+                                dateTo: new Date(),
+                                rating: 0
                             }}
                             onSubmit={(values) => {
                                 alert(JSON.stringify(values));
@@ -60,18 +35,19 @@ const RoomFormRate = (props) => {
                         >
                             {(props) => (
                             <Form>
-                                <div className="form-group">
+                                <div className="inputItem">
                                     <label htmlFor="dateFrom">From</label>
                                     <MyDatePicker name="dateFrom" />
                                 </div>
-                                <div className="form-group">
+                                <div className="inputItem">
                                     <label htmlFor="dateTo">To</label>
                                     <MyDatePicker name="dateTo" />
                                 </div>
-                                <div>
-                                    
+                                <div className="inputItem">
+                                    <label htmlFor="rating">Specific Rating</label>
+                                    <Field name="rating" className="form-control" />
                                 </div>
-                                <button type="submit">Submit</button>
+                                <button type="submit">Submit Change</button>
                             </Form>
                             )}
                         </Formik>
