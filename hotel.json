@@ -1,0 +1,75 @@
+{
+  "overview": {
+    "hotelName": "The Princess of Arena Cam Ranh Home",
+    "hotelAddress": "Toà Sea - Khu nghỉ The Arena, Miếu Ông, Vietnam",
+    "hotelCoordinate": [
+      45.464743,
+      9.189135799999999
+    ],
+    "hotelOwner": {
+      "ownerName": "Thanh Nguyen",
+      "ownerEmail": "Owner Email",
+      "ownerPhone": "Onwer Phone"
+    },
+    "utilities": [
+      "AC",
+      "Terrace",
+      "Pool",
+      "Gym",
+      "Restaurant",
+      "Beach"
+    ]
+  },
+  "photos": [
+    "./img/1.jpeg",
+    "./img/2.jpeg",
+    "./img/3.jpeg",
+    "./img/4.jpeg",
+    "./img/5.jpeg",
+    "./img/6.jpeg",
+    "./img/7.jpeg",
+    "./img/8.jpeg",
+    "./img/9.jpeg",
+    "./img/10.jpeg",
+    "./img/11.jpeg",
+    "./img/12.jpeg"
+  ],
+  "roomType": [
+    {
+      "uuid" : "e5fc7718-ed0f-44b3-aa28-d63c722ca9e9",
+      "name": "single",
+      "size": "45",
+      "rate": "100",
+      "numberOfRooms": "2 single rooms"
+    },
+    {
+      "uuid": "0e6b7514-464f-482e-a746-db25fceeccad",
+      "name": "double",
+      "size": "100",
+      "rate": "200",
+      "numberOfRooms": "1 double rooms"
+    }
+  ],
+  "houseRules": [
+    {
+      "nameRule": "checkin",
+      "descriptionRule": "14:00 - 22:00"
+    },
+    {
+      "nameRule": "checkout",
+      "descriptionRule": "8:00 - 12:00"
+    },
+    {
+      "nameRule": "Cancellation/prepayment",
+      "descriptionRule": "Cancellation and prepayment policies vary according to apartment type. Please enter the dates of your stay and check the conditions of your required room."
+    },
+    {
+      "nameRule": "Cash only",
+      "descriptionRule": "This property only accepts cash payments."
+    },
+    {
+      "nameRule": "Smoking",
+      "descriptionRule": "Smoking is not allowed."
+    }
+  ]
+}
