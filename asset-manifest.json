@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/TranMachSoHan/SEAD_Assessment1/static/css/main.029371e6.css",
-    "main.js": "/TranMachSoHan/SEAD_Assessment1/static/js/main.9a057e17.js",
-    "index.html": "/TranMachSoHan/SEAD_Assessment1/index.html",
-    "main.029371e6.css.map": "/TranMachSoHan/SEAD_Assessment1/static/css/main.029371e6.css.map",
-    "main.9a057e17.js.map": "/TranMachSoHan/SEAD_Assessment1/static/js/main.9a057e17.js.map"
+    "main.css": "/SEAD_Assessment1/static/css/main.029371e6.css",
+    "main.js": "/SEAD_Assessment1/static/js/main.9a057e17.js",
+    "index.html": "/SEAD_Assessment1/index.html",
+    "main.029371e6.css.map": "/SEAD_Assessment1/static/css/main.029371e6.css.map",
+    "main.9a057e17.js.map": "/SEAD_Assessment1/static/js/main.9a057e17.js.map"
   },
   "entrypoints": [
     "static/css/main.029371e6.css",
