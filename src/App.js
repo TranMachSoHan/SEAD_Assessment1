@@ -8,12 +8,13 @@ import Home from './pages/Home/Home';
 function App() {
   return (
     <div className="App">
-      <h1>Hello</h1>
-      <Routes>
-        <Route exact path='/home' element={<Home/>} />
-        <Route path='/visitor' element={<HotelDetail/>}/>
-        <Route path='/admin/*' element={<Admin/>}/>
-      </Routes>
+      <BrowserRouter>
+        <Routes>
+          <Route exact path='/home' element={<Home/>} />
+          <Route path='/visitor' element={<HotelDetail/>}/>
+          <Route path='/admin/*' element={<Admin/>}/>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
