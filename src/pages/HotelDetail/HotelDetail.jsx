@@ -32,7 +32,7 @@ const HotelDetail = () =>{
             {loading && <div>Loading</div>}
             {!loading && (
                 <div>
-                    <HotelImages hotelPhotos={hotel.photos}></HotelImages>
+                    {/* <HotelImages hotelPhotos={hotel.photos}></HotelImages> */}
                     <HotelOverview overview={hotel.overview}></HotelOverview>
                     <RoomList roomList = {hotel.roomType}></RoomList>
                     <HotelRuleView rules={hotel.houseRules}></HotelRuleView>
