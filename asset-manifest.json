@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/SEAD_Assessment1/static/css/main.029371e6.css",
-    "main.js": "/SEAD_Assessment1/static/js/main.9a057e17.js",
+    "main.js": "/SEAD_Assessment1/static/js/main.4da64e2f.js",
     "index.html": "/SEAD_Assessment1/index.html",
     "main.029371e6.css.map": "/SEAD_Assessment1/static/css/main.029371e6.css.map",
-    "main.9a057e17.js.map": "/SEAD_Assessment1/static/js/main.9a057e17.js.map"
+    "main.4da64e2f.js.map": "/SEAD_Assessment1/static/js/main.4da64e2f.js.map"
   },
   "entrypoints": [
     "static/css/main.029371e6.css",
-    "static/js/main.9a057e17.js"
+    "static/js/main.4da64e2f.js"
   ]
 }
