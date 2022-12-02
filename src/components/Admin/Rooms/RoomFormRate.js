@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Field, Formik,Form,useFormikContext, useField } from "formik"; // <== this correct import
+import { Field, Formik,Form, useField } from "formik"; // <== this correct import
 import axios from "axios";
 import { Card } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css";
+import MyDatePicker from "../../Helper/MyDatePicker";
 
-const RoomOverviewForm = (props) => {
+const RoomFormRate = (props) => {
     const [room, setRoom] = useState({});
     const [loading, setLoading] = useState(true);
     const [hotel,setHotel] = useState({});
-
     const {roomID} = useParams();
 
     const navigate = useNavigate();
@@ -35,23 +37,8 @@ const RoomOverviewForm = (props) => {
     
         fetchData();
 
-      }, []);
+    }, []);
       
-    const DatePickerField = ({ ...props }) => {
-        const { setFieldValue } = useFormikContext();
-        const [field] = useField(props);
-        return (
-            // <DatePicker
-            //     {...field}
-            //     {...props}
-            //     selected={(field.value && new Date(field.value)) || null}
-            //     onChange={(val) => {
-            //         setFieldValue(field.name, val);
-            //     }}
-            // />
-            <div></div>
-        );
-    };
 
     return (
         <div>
@@ -63,24 +50,30 @@ const RoomOverviewForm = (props) => {
                     </Card.Header>
                     <Card.Body>
                         <Formik
-                            initialValues={{
-                                
+                            initialValues={{ 
+                                dateFrom: new Date() , 
+                                dateTo: new Date()
                             }}
-                            enableReinitialize
-                            onSubmit={value=>{
-
-                                
+                            onSubmit={(values) => {
+                                alert(JSON.stringify(values));
                             }}
-                            >
+                        >
+                            {(props) => (
                             <Form>
-                                <div className="inputItem">
-                                    <label htmlFor="roomName">Room Name</label>
-                                    <Field name="roomName" className="form-control"/>
+                                <div className="form-group">
+                                    <label htmlFor="dateFrom">From</label>
+                                    <MyDatePicker name="dateFrom" />
                                 </div>
-                                
-                                <button type="submit">Save changes</button>
-                                <button onClick={() => navigate(`/admin/rooms`)}>Return</button>
+                                <div className="form-group">
+                                    <label htmlFor="dateTo">To</label>
+                                    <MyDatePicker name="dateTo" />
+                                </div>
+                                <div>
+                                    
+                                </div>
+                                <button type="submit">Submit</button>
                             </Form>
+                            )}
                         </Formik>
                     </Card.Body>
                     
@@ -90,4 +83,4 @@ const RoomOverviewForm = (props) => {
     )
 }
 
-export default RoomOverviewForm;
+export default RoomFormRate;

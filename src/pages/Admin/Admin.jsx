@@ -6,7 +6,7 @@ import HotelRoomList from "./HotelRoomList";
 import Homepage from "./Homepage";
 import { v4 as uuid } from 'uuid';
 
-const HotelDetail = () =>{
+const Admin = () =>{
     console.log(uuid());
     
     return(
@@ -21,4 +21,4 @@ const HotelDetail = () =>{
     )
 }
 
-export default HotelDetail;
+export default Admin;

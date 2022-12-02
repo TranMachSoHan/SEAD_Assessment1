@@ -21,18 +21,21 @@
     ]
   },
   "photos": [
-    "./img/1.jpeg",
-    "./img/2.jpeg",
-    "./img/3.jpeg",
-    "./img/4.jpeg",
-    "./img/5.jpeg",
-    "./img/6.jpeg",
-    "./img/7.jpeg",
-    "./img/8.jpeg",
-    "./img/9.jpeg",
-    "./img/10.jpeg",
-    "./img/11.jpeg",
-    "./img/12.jpeg"
+    "https://pix8.agoda.net/hotelImages/89388/-1/9568b06108daab7524790f7cd0c585e9.jpg?ca=9&ce=1&s=1024x768",
+    "https://pix8.agoda.net/hotelImages/893/89388/89388_17030107320051305747.jpg?ca=6&ce=1&s=1024x768",
+    "https://pix8.agoda.net/hotelImages/89388/-1/a8802e00ce513e58e92e9be439f5e75f.jpg?ca=7&ce=1&s=1024x768",
+    "https://pix8.agoda.net/hotelImages/893/89388/89388_17030107170051305571.jpg?ca=6&ce=1&s=1024x768",
+    "https://pix8.agoda.net/hotelImages/893/89388/89388_17030107340051305763.jpg?ca=6&ce=1&s=1024x768",
+    "https://pix8.agoda.net/hotelImages/893/89388/89388_17030107320051305746.jpg?ca=6&ce=1&s=1024x768",
+    "https://pix8.agoda.net/hotelImages/893/89388/89388_17030107170051305568.jpg?ca=6&ce=1&s=1024x768",
+    "https://pix8.agoda.net/hotelImages/893/89388/89388_17030107230051305638.jpg?ca=6&ce=1&s=1024x768",
+    "https://q-xx.bstatic.com/xdata/images/hotel/840x460/20455439.jpg?k=b728b45691f6b432ff68e4dc2e2c4ca362fe8251e2f87727110aef66d9b8c454&o=",
+    "https://q-xx.bstatic.com/xdata/images/hotel/840x460/333925055.jpg?k=25e15d422b21222362a364a7348e4f4f707876a1cdfdc953c28de76454e7141c&o=",
+    "https://q-xx.bstatic.com/xdata/images/hotel/840x460/333925043.jpg?k=102543960cd5f39fd6e3141649a760059f1900525a0613178bb272a7a200a471&o=",
+    "https://pix8.agoda.net/hotelImages/34517803/0/ebe2bd258e9ddbfacc796cd998b81f0d.jpg?ce=0&s=1024x768",
+    "https://q-xx.bstatic.com/xdata/images/hotel/840x460/40322048.jpg?k=e6f68cf766a6194dcbfa6583981e78d99d0ffd72cef30005bbe38bdfb0add26b&o=",
+    "https://q-xx.bstatic.com/xdata/images/hotel/840x460/40401151.jpg?k=3337b4b02e22f63f265b1933a20e4e6bf88aa835a633107066beb6d231ea168b&o=",
+    "https://pix8.agoda.net/hotelImages/34517803/0/b68781b886e720eae6a186330378751a.jpg?ce=0&s=1024x768"
   ],
   "roomType": [
     {
