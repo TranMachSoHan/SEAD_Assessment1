@@ -22,16 +22,30 @@ const RoomTable =(props)=> {
                                 <td>{room.name}</td>
                                 <td>{room.rate} VND</td>
                                 <td>
-                                    <div>
-                                        <FaHouseUser/>
-                                        Room size: {room.size} m2
+                                    <div className="d-flex align-items-center justify-content-around">
+                                        <div > 
+                                            <FaHouseUser/>
+                                        </div>
+                                        <div>
+                                            Room size: {room.size} m2
+                                        </div>
+                                        
+                                        
                                     </div>
-                                    <div>
-                                        <FaBed/>
-                                        {room.numberOfRooms}
+                                    <hr/>
+                                    <div className="d-flex align-items-center justify-content-around">
+                                        <div>
+                                            <FaBed/>
+                                        </div>
+                                        <div>
+                                            {room.singleRoom > 0 && (<div>{room.singleRoom} single room</div>)} 
+                                            <br/>
+                                            {room.doubleRoom > 0 && (<div>{room.singleRoom} double room</div>)}
+                                        </div>
+                                        
                                     </div>
                                 </td>
-                                <td>
+                                <td >
                                     <Button>Order Now</Button>
                                 </td>
                             </tr>

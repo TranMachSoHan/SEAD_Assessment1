@@ -7,14 +7,15 @@ import { useNavigate } from "react-router-dom";
 const Room = (props) => {
     const [loading, setLoading] = useState(true);
     const [rooms,setRooms] = useState({});
-
+    const [hotel, setHotel] = useState({});
 
     useEffect(() => {
       const fetchData = async () => {
         try {
-          axios.get('https://api.npoint.io/57c91b6f051e9f983cd7/roomType').then(
+          axios.get('https://api.npoint.io/57c91b6f051e9f983cd7').then(
               response => {
-                  setRooms(response.data);
+                  setHotel(response.data);
+                  setRooms(response.data.roomType);
                   setLoading(false);
               }
           );
@@ -27,50 +28,21 @@ const Room = (props) => {
     }, []); 
 
     const deleteRoom = (value)=>{
-        fetch(`https://api.npoint.io/57c91b6f051e9f983cd7/roomType/${value.index}`, 
-            {
-              method: 'DELETE',
-              headers:{
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'http://localhost:3000'
-              }
-            }
-        ).then(res=> {
-          if(!res.ok){
-            console.log('Problem');
-            return;
+      rooms.splice(value.index, 1);
+
+      let dataPost = {
+          ...props.hotel,
+          "roomType": rooms
+      }
+
+      setLoading(true);
+      axios.post("https://api.npoint.io/57c91b6f051e9f983cd7/", dataPost).then(
+          response => {
+              setLoading(false);
+              setHotel(response.data);
+              setRooms(response.data.roomType);
           }
-          return res.json();
-        })
-        .then(data=>{
-          console.log("success");
-        })
-        .catch(error => {
-          console.log(error);
-        })
-        // const deleteData = async () => {
-        //     try {
-        //       axios.delete(`https://api.npoint.io/57c91b6f051e9f983cd7/roomType/${value.index}`, 
-        //       {headers: {
-        //         // 'application/json' is the modern content-type for JSON, but some
-        //         // older servers may use 'text/json'.
-        //         // See: http://bit.ly/text-json
-        //         'content-type': 'application/json',
-        //         'Access-Control-Allow-Origin': 'http://localhost:3000'
-        //       }}).then(
-        //           response => {
-        //                 setLoading(false);
-        //                 rooms.splice(value.index, 1);
-        //                 setRooms([...rooms]);
-        //           }
-        //       );
-        //     } catch (error) {
-        //       console.error(error);
-        //     }
-        //   };
-      
-        //   deleteData();
-        
+      )
     }
 
     const navigate = useNavigate();

@@ -7,13 +7,13 @@ const HotelRuleView = (props) => {
             <Table striped bordered hover> 
                 <tbody>
                     {props.rules.map(
-                        rule => (
+                        (rule,index) => (
                             <tr key={rule.nameRule}>
                                 <td>{rule.nameRule}</td>
                                 <td>{rule.descriptionRule}</td>
                                 <td>
                                     <button onClick={ () => props.onEditRule({rule})}>Edit</button>
-                                    <button onClick={ () => props.onDeleteRule({rule})}>Delete</button>
+                                    <button onClick={ () => props.onDeleteRule({rule,index})}>Delete</button>
                                 </td>
                             </tr>
                         )) 

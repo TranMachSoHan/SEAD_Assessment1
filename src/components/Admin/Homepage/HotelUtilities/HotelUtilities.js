@@ -1,38 +1,17 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import axios from "axios";
 import {Container, Row, Col} from "react-bootstrap";
 import Card from "react-bootstrap/Card"
 import HotelUtilitiesView from "./HotelUtilitiesView";
 import HotelUtilityForm from "./HotelUtilitiesForm";
 
-const HotelUtilities = () =>{
-    const [loading, setLoading] = useState(true);
-    let [utilities,setUtilties] = useState([]);
+const HotelUtilities = (props) =>{
+    const [loading, setLoading] = useState(false);
+    let [utilities,setUtilties] = useState(props.hotel.overview.utilities);
     const [utilityFormData, setUtilityFormData] = useState({});
     const [utilityAction, setUtilityAction] = useState(false);
 
-
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          axios.get('https://api.npoint.io/57c91b6f051e9f983cd7/overview/utilities').then(
-              response => {
-                  setUtilties(response.data);
-                  setLoading(false);
-                  console.log(utilities);
-              }
-          );
-        } catch (error) {
-          console.error(error)
-        }
-      };
-  
-      fetchData();
-    }, []);
-
-
     const handleUtility = (value) =>{
-        cancelForm();
         setUtilityFormData({ 
           "utilityName": value.utility,
           "index": value.index,
@@ -41,14 +20,32 @@ const HotelUtilities = () =>{
         setUtilityAction(true);
       }
   
-      const deleteUtility = (value)=>{
-        utilities.splice(value.index, 1);
-        setUtilties([...utilities]);
-      }
-  
+
       const cancelForm = () =>{
         setUtilityFormData({});
         setUtilityAction(false);
+      }
+
+      const deleteUtility = (value)=>{
+        utilities.splice(value.index, 1);
+
+        let overviewChangedData = {
+          ...props.hotel.overview, 
+          "utilities": [...utilities]
+        }
+
+        let dataPost = {
+            ...props.hotel,
+            "overview": overviewChangedData
+        }
+
+        setLoading(true);
+        axios.post("https://api.npoint.io/57c91b6f051e9f983cd7/", dataPost).then(
+            response => {
+                setLoading(false);
+                setUtilties(response.data.overview.utilities);
+            }
+        )
       }
       
       const submitForm =(formData)=>{
@@ -58,7 +55,22 @@ const HotelUtilities = () =>{
         else{
           // edit 
           utilities[formData.index] = formData.utilityName;
-          setUtilties(utilities);
+          let overviewChangedData = {
+            ...props.hotel.overview, 
+            "utilities": [...utilities]
+          }
+  
+          let dataPost = {
+              ...props.hotel,
+              "overview": overviewChangedData
+          }
+          setLoading(true);
+          axios.post("https://api.npoint.io/57c91b6f051e9f983cd7/", dataPost).then(
+              response => {
+                  setLoading(false);
+                  setUtilties(response.data.overview.utilities);
+              }
+          )
           cancelForm();
         }
       }

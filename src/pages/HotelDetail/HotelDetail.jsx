@@ -4,6 +4,7 @@ import axios from "axios";
 import RoomList from "../../components/RoomList/RoomsList";
 import HotelImages from "../../components/HotelImages/HotelImages";
 import HotelRuleView from "../../components/HotelRule/HotelRuleView";
+import { Container } from "react-bootstrap";
 
 const HotelDetail = () =>{
     const [hotel, setHotel] = useState([]);
@@ -27,7 +28,7 @@ const HotelDetail = () =>{
       }, []);
       
     return (
-        <div>
+        <Container>
             {loading && <div>Loading</div>}
             {!loading && (
                 <div>
@@ -39,7 +40,7 @@ const HotelDetail = () =>{
             )}
             
             
-        </div>
+        </Container>
     )
 }
 

@@ -13,6 +13,7 @@ const HotelRuleForm = (props) => {
                 onSubmit={value=>{
                     props.onFormSubmit(
                         {
+                            "index": props.formData.index,
                             "nameRule" : value.ruleName,
                             "descriptionRule": value.ruleDescription,
                             "typeForm": props.formData.typeForm

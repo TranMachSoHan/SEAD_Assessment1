@@ -6,31 +6,34 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const RoomForm = (props) => {
-    const [room, setRoom] = useState([]);
+    const [room, setRoom] = useState({});
     const [loading, setLoading] = useState(true);
+    const [hotel,setHotel] = useState({});
 
     const {roomID} = useParams();
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        if(roomID !== "-1") {
-            const fetchData = async () => {
-            try {
-                axios.get(`https://api.npoint.io/57c91b6f051e9f983cd7/roomType/${roomID}`).then(
-                    response => {
-                        setRoom(response.data);
-                        setLoading(false);
+        const fetchData = async () => {
+
+        try {
+            console.log(Number(roomID));
+            axios.get(`https://api.npoint.io/57c91b6f051e9f983cd7`).then(
+                response => {
+                    setHotel(response.data);
+                    if(roomID !== -1){
+                        setRoom(response.data.roomType[roomID]);
                     }
-                )
-            } catch (error) {
-                console.error(error)
-            }
-            };
-        
-            fetchData();
+                    setLoading(false);
+                }
+            )
+        } catch (error) {
+            console.error(error)
         }
-        else{setLoading(false)}
+        };
+    
+        fetchData();
 
       }, []);
     return (
@@ -47,7 +50,8 @@ const RoomForm = (props) => {
                                 roomName: room.name ? room.name : "",
                                 roomSize: room.size ? room.size : "",
                                 roomRate: room.rate ? room.rate : "",
-                                roomNumber: room.numberOfRooms ? room.numberOfRooms : "",
+                                singleRoom: room.singleRoom ? room.singleRoom : 0,
+                                doubleRoom: room.doubleRoom ? room.doubleRoom : 0
                             }}
                             enableReinitialize
                             onSubmit={value=>{
@@ -57,40 +61,20 @@ const RoomForm = (props) => {
                                     "name" : value.roomName,
                                     "size": value.roomSize,
                                     "rate": value.roomRate,
-                                    "numberOfRooms": value.roomNumber
+                                    "singleRoom": value.singleRoom,
+                                    "doubleRoom": value.doubleRoom
                                 }
-                                if(roomID !== "-1"){
-                                    const putData = async () => {
-                                        try {
-                                            axios.put(`https://api.npoint.io/57c91b6f051e9f983cd7/roomType/${roomID}`, data).then(
-                                                response => {
-                                                    setRoom(response.data);
-                                                    console.log("success");
-                                                    setLoading(false);
-                                                }
-                                            );
-                                        } catch (error) {
-                                            console.error(error)
-                                        }
-                                    };
-                                    putData();
-                                }
-                                else{
-                                    const postData = async () => {
-                                        try {
-                                            axios.post(`https://api.npoint.io/57c91b6f051e9f983cd7/roomType`, data).then(
-                                                response => {
-                                                    setRoom(response.data);
-                                                    console.log("success");
-                                                    setLoading(false);
-                                                }
-                                            );
-                                        } catch (error) {
-                                            console.error(error)
-                                        }
-                                    };
-                                    postData();
-                                }
+
+                                hotel.roomType[roomID] = data;
+                                
+                                setLoading(true);
+                                axios.post("https://api.npoint.io/57c91b6f051e9f983cd7/", hotel).then(
+                                    response => {
+                                        setLoading(false);
+                                        setHotel(response.data);
+                                        setRoom(data);
+                                    }
+                                )
                             }}
                             >
                             <Form>
@@ -107,8 +91,12 @@ const RoomForm = (props) => {
                                     <Field name="roomRate" className="form-control"/>
                                 </div>
                                 <div className="inputItem">
-                                    <label htmlFor="roomNumber">Number of Room</label>
-                                    <Field name="roomNumber" className="form-control"/>
+                                    <label htmlFor="singleRoom">Number of Single room</label>
+                                    <Field name="singleRoom" className="form-control"/>
+                                </div>
+                                <div className="inputItem">
+                                    <label htmlFor="doubleRoom">Number of Double room</label>
+                                    <Field name="doubleRoom" className="form-control"/>
                                 </div>
                                 <button type="submit">Save changes</button>
                                 <button onClick={() => navigate(`/admin/rooms`)}>Return</button>

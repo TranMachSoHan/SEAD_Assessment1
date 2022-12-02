@@ -5,29 +5,11 @@ import {Container, Row, Col} from "react-bootstrap";
 import Card from "react-bootstrap/Card"
 import HotelRuleForm from "./HotelRuleForm";
 
-const HotelRule = () => {
-    const [loading, setLoading] = useState(true);
-    let [rules,setRules] = useState({});
+const HotelRule = (props) => {
+    const [loading, setLoading] = useState(false);
+    let [rules,setRules] = useState(props.hotel.houseRules);
     const [ruleFormData, setRuleFormData] = useState({});
     const [ruleAction, setRuleAction] = useState(false);
-
-
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          axios.get('https://api.npoint.io/57c91b6f051e9f983cd7/houseRules').then(
-              response => {
-                  setRules(response.data);
-                  setLoading(false);
-              }
-          );
-        } catch (error) {
-          console.error(error)
-        }
-      };
-  
-      fetchData();
-    }, []);
 
     const handleRule = (rule) =>{
       setRuleFormData({ 
@@ -38,9 +20,21 @@ const HotelRule = () => {
       setRuleAction(true);
     }
 
-    const deleteRule = (rule)=>{
-      rules = rules.filter( selectedRule => selectedRule.nameRule !== rule.rule.nameRule);
-      setRules(rules)
+    const deleteRule = (value)=>{
+      rules.splice(value.index, 1);
+
+      let dataPost = {
+          ...props.hotel,
+          "houseRules": rules
+      }
+
+      setLoading(true);
+      axios.post("https://api.npoint.io/57c91b6f051e9f983cd7/", dataPost).then(
+          response => {
+              setLoading(false);
+              setRules(response.data.houseRules);
+          }
+      )
     }
 
     const cancelForm = () =>{
@@ -60,9 +54,20 @@ const HotelRule = () => {
       else{
         // edit 
         let index = rules.findIndex((rule) => rule.nameRule === formData.nameRule);
-        console.log(formData);
         rules[index]['descriptionRule'] = formData.descriptionRule;
-        setRules(rules);
+
+        let dataPost = {
+          ...props.hotel,
+          "houseRules": rules
+        }
+
+        setLoading(true);
+        axios.post("https://api.npoint.io/57c91b6f051e9f983cd7/", dataPost).then(
+            response => {
+                setLoading(false);
+                setRules(response.data.houseRules);
+            }
+        )
         cancelForm();
       }
     }

@@ -14,7 +14,6 @@ const RoomTable = (props) => {
                                 <th>Room Name</th>
                                 <th>Rate</th>
                                 <th>Room Size</th>
-                                <th>No. of Rooms</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -26,9 +25,6 @@ const RoomTable = (props) => {
                                         <td>{room.name}</td>
                                         <td>{room.rate} VND</td>
                                         <td>{room.size}</td>
-                                        <td>
-                                            {room.numberOfRooms}
-                                        </td>
                                         <td>
                                             <button onClick={() => props.onEditRoom({room,index})} type="button" className="btn btn-info"><FaPen/></button>
                                             <button onClick={() => props.onDeleteRoom({room,index})} type="button" className="btn btn-danger"><FaTrash/></button>

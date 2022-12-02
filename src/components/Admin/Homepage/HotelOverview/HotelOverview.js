@@ -1,29 +1,12 @@
-import React , { useState, useEffect } from "react";
+import React , { useState } from "react";
 import "./HotelOverview.css"
-import axios from "axios";
 import Card from "react-bootstrap/Card"
+import axios from "axios";
 import {Container, Row, Col} from "react-bootstrap"
 import { Field, Formik,Form } from "formik"; // <== this correct import
-const HotelOverview = () => {
-    const [loading, setLoading] = useState(true);
-    let [data,setData] = useState({});
-
-    useEffect(() => {
-      const fetchData = async () => {
-        try {
-          axios.get('https://api.npoint.io/57c91b6f051e9f983cd7/overview').then(
-              response => {
-                setData(response.data);
-                setLoading(false);
-              }
-          );
-        } catch (error) {
-          console.error(error)
-        }
-      };
-  
-      fetchData();
-    }, []);
+const HotelOverview = (props) => {
+    const [loading, setLoading] = useState(false);
+    let [data,setData] = useState(props.hotel.overview);
 
     return (
         <div>
@@ -41,7 +24,8 @@ const HotelOverview = () => {
                                 ownerPhone: data.hotelOwner.ownerPhone
                             }}
                             onSubmit={value=>{
-                                let myData = {
+                                
+                                let overviewChangedData = {
                                     ...data, 
                                     "hotelOwner":{
                                         "ownerName": value.ownerName, "ownerEmail": value.ownerEmail, "ownerPhone": value.ownerPhone
@@ -49,21 +33,18 @@ const HotelOverview = () => {
                                     "hotelName": value.hotelName,
                                     "hotelAddress": value.hotelAddress
                                 }
-                                const fetchData = async () => {
-                                    try {
-                                        setLoading(true);
-                                        axios.put('https://api.npoint.io/57c91b6f051e9f983cd7',myData).then(
-                                            response => {
-                                                console.log(response.data);
-                                                setLoading(false);
-                                            }
-                                        );
-                                    } catch (error) {
-                                      console.error(error)
+                                let dataPost = {
+                                    ...props.hotel,
+                                    "overview": overviewChangedData
+                                }
+
+                                setLoading(true);
+                                axios.post("https://api.npoint.io/57c91b6f051e9f983cd7/", dataPost).then(
+                                    response => {
+                                        setLoading(false);
+                                        setData(response.data.overview);
                                     }
-                                  };
-                              
-                                fetchData();
+                                )
                             }}
                             >
                             <Form>
