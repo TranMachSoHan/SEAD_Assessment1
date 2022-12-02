@@ -19,7 +19,6 @@ const HotelRule = (props) => {
       });
       setRuleAction(true);
     }
-
     const deleteRule = (value)=>{
       rules.splice(value.index, 1);
 
