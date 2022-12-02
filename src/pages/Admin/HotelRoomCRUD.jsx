@@ -1,10 +1,11 @@
 import React from "react";
-import RoomForm from "../../components/Admin/Rooms/RoomForm";
+import RoomOverviewForm from "../../components/Admin/Rooms/RoomOverviewForm";
 
 const HotelRoomCRUD = () =>{
+    
     return(
         <div>
-            <RoomForm></RoomForm>
+            <RoomOverviewForm></RoomOverviewForm>
         </div>
     )
 }
